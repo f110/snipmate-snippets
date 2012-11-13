@@ -19,19 +19,16 @@ snippet if
 snippet ife
 	if (${1}) {
 		${2:# body...}
-	}
-	else {
+	} else {
 		${3:# else...}
 	}
 # Conditional if..elsif..else
 snippet ifee
 	if (${1}) {
 		${2:# body...}
-	}
-	elsif (${3}) {
+	} elsif (${3}) {
 		${4:# elsif...}
-	}
-	else {
+	} else {
 		${5:# else...}
 	}
 # Conditional One-line
@@ -47,11 +44,10 @@ snippet xunless
 	${1:expression} unless ${2:condition};${3}
 # Try/Except
 snippet eval
-	local $@;
 	eval {
 		${1:# do something risky...}
 	};
-	if (my $e = $@) {
+	if ($@) {
 		${2:# handle failure...}
 	}
 # While Loop
@@ -81,14 +77,15 @@ snippet fore
 # Package
 snippet cl
 	package ${1:ClassName};
+	use strict;
+	use warnings;
 
-	use base qw(${2:ParentClass});
+	use parent qw(${2:ParentClass});
 
 	sub new {
 		my $class = shift;
-		$class = ref $class if ref $class;
 		my $self = bless {}, $class;
-		$self;
+		return $self;
 	}
 
 	1;${3}
@@ -347,6 +344,7 @@ snippet tprep
 		my $self = shift;
 		${4:#  body}
 	}
+
 # cause failures to print stack trace
 snippet debug_trace
 	use Carp; # 'verbose';
@@ -356,3 +354,26 @@ snippet debug_trace
 		require Carp; Carp::confess
 	};
 
+# Data::Dumper
+snippet dump
+	warn Data::Dumper::Dumper ${1:# variables};${2}
+
+# test
+snippet subt
+	subtest '${1:# test name}' => sub {
+		${2:# Tests}
+	};
+
+snippet sn
+	use Test::More;
+	#use Test::Exception;
+
+	my $class;
+	BEGIN {
+		$class = "${1:# Module name}";
+		use_ok $class;
+	}
+
+	${2:# TEST!}
+
+	done_testing();
