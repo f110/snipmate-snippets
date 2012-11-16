@@ -89,13 +89,16 @@ snippet for
 snippet fore
 	${1:expression} foreach @${2:array};${3}
 
+snippet parent
+	use parent qw(${1: Parent Class});
+
 # Package
-snippet cl
+snippet package
 	package ${1:ClassName};
 	use strict;
 	use warnings;
 
-	use parent qw(${2:ParentClass});
+	${2:Parent Class?})
 
 	sub new {
 		my $class = shift;
@@ -150,15 +153,11 @@ snippet vers
 snippet switch
 	use feature 'switch';
 
-
-
 # Anonymous subroutine
 snippet asub
-    sub {
-        ${1:# body }
-    }
-
-
+	sub {
+		${1:# body }
+	}
 
 # Begin block
 snippet begin
@@ -167,19 +166,19 @@ snippet begin
 	}
 
 # call package function with some parameter
-snippet pkgmv  
+snippet pkgmv
 	__PACKAGE__->${1:package_method}(${2:var})
 
 # call package function without a parameter
-snippet pkgm  
+snippet pkgm
 	__PACKAGE__->${1:package_method}()
 
 # call package "get_" function without a parameter
-snippet pkget  
+snippet pkget
 	__PACKAGE__->get_${1:package_method}()
 
 # call package function with a parameter
-snippet pkgetv  
+snippet pkgetv
 	__PACKAGE__->get_${1:package_method}(${2:var})
 
 # complex regex
@@ -209,18 +208,13 @@ snippet when
 snippet hslice
 	@{ ${1:hash}  }{ ${2:array} }
 
-
-
 # map
 snippet map
 	map { ${2: body } } ${1: @array };
 
-
 # grep
 snippet grep
 	grep { ${2: body} } ${1: @array};
-
-
 
 # Pod stub
 snippet ppod
@@ -301,7 +295,6 @@ snippet head1
 snippet head2
 	=head1 ${1}
 
-
 # Moose package
 snippet moosecl
 	package ${1:ClassName};
@@ -351,7 +344,6 @@ snippet override
 		${2:# my $self = shift;};
 		${3:# my ($self,$args) = @_;};
 	};
-
 
 # use test classes
 snippet tuse
