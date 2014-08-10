@@ -397,7 +397,7 @@ snippet debug_trace
 
 # Data::Dumper
 snippet dump
-	warn Data::Dumper::Dumper ${1:# variables};
+	use Data::Dumper;warn Data::Dumper::Dumper(${1:# variables});
 
 # test
 snippet subt
